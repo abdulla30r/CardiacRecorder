@@ -22,7 +22,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     private List<Measurement> measurementList;
-
     public MyAdapter(List<Measurement> measurementList) {
         this.measurementList = measurementList;
         firebaseAuth = FirebaseAuth.getInstance();
