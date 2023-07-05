@@ -104,6 +104,29 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up click listeners
 
+        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemDeleteClick(int position) {
+                measurementsRef.document(measurementList.get(position).getId())
+                        .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
+                                measurementList.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+            }
+
+            @Override
+            public void onItemEditClick(int position) {
+                String id = measurementList.get(position).getId();
+                /*Intent intent = new Intent(MainActivity.this, Edit.class);
+                intent.putExtra("Id",id);
+                startActivity(intent);*/
+            }
+        });
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
