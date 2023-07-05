@@ -58,8 +58,18 @@ public class Edit extends AppCompatActivity {
                         measurement.setHeartRate(Integer.parseInt(etHeartRate.getText().toString()));
                         measurement.setComment(etComment.getText().toString());
 
-
-
+                        // Save the updated measurement object back to the database
+                        measurementsRef.document(id).set(measurement)
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(Edit.this, "Item Edited", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Edit.this, MainActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
+                                    startActivity(intent);
+                                    finish();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(Edit.this, "Edit Failed", Toast.LENGTH_SHORT).show();
+                                });
 
                     }
                 });
