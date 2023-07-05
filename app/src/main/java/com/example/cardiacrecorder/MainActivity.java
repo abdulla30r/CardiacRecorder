@@ -10,12 +10,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private Button btnLogout;
     private Button btnAdd;
-
+    private RecyclerView recyclerView;
+    private MyAdapter adapter;
+    private List<Measurement> measurementList;
+    private FirebaseFirestore database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
         String currentUserUid = firebaseAuth.getCurrentUser().getUid();
 
         // Initialize views
         txtView = findViewById(R.id.txt);
         btnLogout = findViewById(R.id.btnLogout);
         btnAdd = findViewById(R.id.btnAdd);
+        recyclerView = findViewById(R.id.recyclerView);
 
         // Set the current user's display name
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -49,6 +64,45 @@ public class MainActivity extends AppCompatActivity {
             String name = currentUser.getDisplayName();
             txtView.setText(name);
         }
+
+        // Set up RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        measurementList = new ArrayList<>();
+        adapter = new MyAdapter(measurementList);
+        recyclerView.setAdapter(adapter);
+
+        // Retrieve measurement data from Firestore
+        CollectionReference measurementsRef = database.collection("users").document(currentUserUid).collection("measurements");
+
+        Query query = measurementsRef
+                .orderBy("date", Query.Direction.ASCENDING);
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                measurementList.clear();
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    Measurement measurement = documentSnapshot.toObject(Measurement.class);
+                    measurementList.add(measurement);
+                }
+
+                Collections.sort(measurementList, new Comparator<Measurement>() {
+                    @Override
+                    public int compare(Measurement o1, Measurement o2) {
+                        return o1.getTime().compareTo(o2.getTime());
+                    }
+                });
+
+                adapter.notifyDataSetChanged();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainActivity.this, "Failed to retrieve measurements", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        // Set up click listeners
 
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
