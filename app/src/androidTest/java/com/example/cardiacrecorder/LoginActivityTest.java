@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 
-import com.example.cardiacrecorder.Login;
-import com.example.cardiacrecorder.R;
 
 @RunWith(AndroidJUnit4.class)
 public class LoginActivityTest {
@@ -25,6 +23,7 @@ public class LoginActivityTest {
 
     @Test
     public void testLoginFlow() {
+
         // Check if the necessary elements are displayed on the screen
         Espresso.onView(ViewMatchers.withId(R.id.inputEmail))
                 .check(matches(ViewMatchers.isDisplayed()));

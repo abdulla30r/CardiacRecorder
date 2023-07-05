@@ -61,6 +61,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.tvTime.setText(measurement.getTime());
         holder.tvComment.setText(measurement.getComment());
 
+        if(measurement.getSystolic()>=90 && measurement.getSystolic()<=140){
+            if(measurement.getDiastolic()>=60 && measurement.getDiastolic()<=90){
+                holder.txtStatus.setText(("Good Condition"));
+            }
+            else{
+                holder.txtStatus.setText("Not Good");
+            }
+
+        }
+
+        else{
+            holder.txtStatus.setText("Not Good");
+        }
+
+
+
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +103,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSystolic, tvDiastolic, tvHeartRate, tvDate, tvTime, tvComment;
+        TextView tvSystolic, tvDiastolic, tvHeartRate, tvDate, tvTime, tvComment,txtStatus;
         Button btnDelete,btnEdit;
 
         public ViewHolder(@NonNull View itemView) {
@@ -100,6 +116,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             tvComment = itemView.findViewById(R.id.tvComment);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
+            txtStatus = itemView.findViewById(R.id.txtStatus);
         }
     }
 }
