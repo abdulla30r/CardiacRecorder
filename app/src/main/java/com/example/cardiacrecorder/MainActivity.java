@@ -121,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemEditClick(int position) {
                 String id = measurementList.get(position).getId();
-                /*Intent intent = new Intent(MainActivity.this, Edit.class);
+                Intent intent = new Intent(MainActivity.this, Edit.class);
                 intent.putExtra("Id",id);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
 
