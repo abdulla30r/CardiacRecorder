@@ -5,8 +5,8 @@ CardiacRecorder is a simple Android app designed to help users monitor their blo
 ## Contributers
 | Name          | GitHub Profile                  |
 | ------------- | ------------------------------- |
-| Abdulla      | [abdulla30r]([https://github.com/johndoe](https://github.com/abdulla30r))     |
-| Rakibul Nasib   | [janesmith]([https://github.com/janesmith](https://github.com/nasib1026)) |
+| Abdulla      | [abdulla30r](https://github.com/abdulla30r)     |
+| Rakibul Nasib   | [janesmith](https://github.com/nasib1026) |
 
 ## Features
 
@@ -35,19 +35,13 @@ CardiacRecorder is a simple Android app designed to help users monitor their blo
 ## Screenshots
 
 
-## Important Links
-
-- [Project Documentation](https://your-project-documentation.com)
-- [Live Demo](https://your-live-demo.com)
-- [API Documentation](https://your-api-documentation.com)
-- [Contributing Guidelines](https://your-contributing-guidelines.com)
 
 ## Final Project Video
 - [Project Video]([https://your-project-documentation.com](https://youtube.com/shorts/Oz88JLy2tsA?feature=share)
 
 ## Testing Videos(Unit,UI)
 - [Unit testing](https://youtu.be/xSAlqjntpGI)
-- [UI testing](https://your-project-documentation.com)
+- [UI testing](https://youtu.be/wIJIvs94n2E)
 ## Contributing
 
 Contributions to CardiacRecorder are welcome! If you have any bug reports, feature requests, or improvements, please submit them as issues or pull requests on the GitHub repository.
