@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,36 +66,55 @@ public class AddMeasurement extends AppCompatActivity {
                 String heartRate = etHeartRate.getText().toString();
                 String comment = etComment.getText().toString();
 
-                int diastolicValue = Integer.parseInt(diastolic);
-                int systolicValue = Integer.parseInt(systolic);
-                int heartRateValue = Integer.parseInt(heartRate);
+                if (TextUtils.isEmpty(diastolic) || TextUtils.isEmpty(systolic) || TextUtils.isEmpty(heartRate) ) {
+                    Toast.makeText(AddMeasurement.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        int diastolicValue = Integer.parseInt(diastolic);
+                        int systolicValue = Integer.parseInt(systolic);
+                        int heartRateValue = Integer.parseInt(heartRate);
 
-
-                Measurement measurement = new Measurement(systolicValue, diastolicValue, date, time, heartRateValue, comment);
-
-                CollectionReference cRef = database.collection("users").document(currentUserUid).collection("measurements");
-                DocumentReference docRef = cRef.document();
-
-                String measurementId = docRef.getId();
-                measurement.setId(measurementId);
-
-                docRef.set(measurement)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(AddMeasurement.this, "Added Successfully!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(AddMeasurement.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                        if (diastolicValue < 0 || systolicValue < 0 || heartRateValue < 0) {
+                            Toast.makeText(AddMeasurement.this, "Please enter non-negative values", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (comment.length() > 20) {
+                                Toast.makeText(AddMeasurement.this, "Comment exceeds maximum length of 20 characters", Toast.LENGTH_SHORT).show();
+                            } else {
+                                saveMeasurement(currentUserUid, systolicValue, diastolicValue, date, time, heartRateValue, comment);
                             }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(AddMeasurement.this, "Data insertion error!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        }
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(AddMeasurement.this, "Invalid input for systolic, diastolic, or heart rate", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
+    }
+
+    private void saveMeasurement(String currentUserUid, int systolic, int diastolic, String date, String time, int heartRate, String comment) {
+        Measurement measurement = new Measurement(systolic, diastolic, date, time, heartRate, comment);
+
+        CollectionReference cRef = database.collection("users").document(currentUserUid).collection("measurements");
+        DocumentReference docRef = cRef.document();
+
+        String measurementId = docRef.getId();
+        measurement.setId(measurementId);
+
+        docRef.set(measurement)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(AddMeasurement.this, "Added Successfully!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AddMeasurement.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddMeasurement.this, "Data insertion error!", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
