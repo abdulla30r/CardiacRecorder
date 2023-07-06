@@ -51,10 +51,10 @@ CardiacRecorder is a simple Android app designed to help users monitor their blo
       <img src="Homepage.jpeg" style="height: 400px; width: auto;">
     </td>
     <td>
-      <img src="add.jpeg" style="height: 400px; width: auto;">
+      <img src="Add.jpeg" style="height: 400px; width: auto;">
     </td>
     <td>
-      <img src="edit.jpeg" style="height: 400px; width: auto;">
+      <img src="Edit.jpeg" style="height: 400px; width: auto;">
     </td>
    
   </tr>
