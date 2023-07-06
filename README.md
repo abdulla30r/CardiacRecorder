@@ -33,15 +33,32 @@ CardiacRecorder is a simple Android app designed to help users monitor their blo
 5. Unusual blood pressure readings will be highlighted or flagged for easy identification.
 
 ## Screenshots
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/abdulla30r/CardiacRecorder/blob/master/Splash.jpeg" style="height: 400px; width: auto;">
+    </td>
+    <td>
+      <img src="https://github.com/abdulla30r/CardiacRecorder/blob/master/Login.jpeg" style="height: 400px; width: auto;">
+    </td>
+    <td>
+      <img src="Register.jpeg" style="height: 400px; width: auto;">
+    </td>
+    <td>
+      <img src="Homepage.jpeg" style="height: 400px; width: auto;">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="add.jpeg" style="height: 400px; width: auto;">
+    </td>
+    <td>
+      <img src="edit.jpeg" style="height: 400px; width: auto;">
+    </td>
+   
+  </tr>
+</table>
 
-[![Image 1](https://github.com/abdulla30r/CardiacRecorder/blob/master/Splash.jpeg)](https://github.com/abdulla30r/CardiacRecorder)
-[![Image 2](https://github.com/abdulla30r/CardiacRecorder/blob/master/Login.jpeg)](https://github.com/abdulla30r/CardiacRecorder)
-[![Image 3](Register.jpeg)](https://github.com/abdulla30r/CardiacRecorder)
-
-
-<img src="Homepage.jpeg" style="height: 200px; width: auto;">
-<img src="add.jpeg" style="height: 200px; width: auto;">
-<img src="edit.jpeg" style="height: 200px; width: auto;">
 
 ## Final Project Video
 - [Project Video]([https://your-project-documentation.com](https://youtube.com/shorts/Oz88JLy2tsA?feature=share)
