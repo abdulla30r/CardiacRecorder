@@ -1,6 +1,6 @@
 # CardiacRecorder
 
-CardiacRecorder is a simple Android app designed to help users monitor their blood pressure and heart rate data. The app allows users to track their heart related records, view details, make edits, and delete entries. It also highlights or flags unusual blood pressure readings.
+CardiacRecorder is a simple Android app designed to help users taking decision on the basis of some data like heart rate, systolic and diastolic entered by the user. It highlights or flags unusual blood pressure readings.
 
 ## Contributers
 | Name          | GitHub Profile                  |
