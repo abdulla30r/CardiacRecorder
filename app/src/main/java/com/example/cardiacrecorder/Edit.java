@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,23 +54,50 @@ public class Edit extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // Update the measurement object with the new values from EditText fields
-                        measurement.setSystolic(Integer.parseInt(etSystolic.getText().toString()));
-                        measurement.setDiastolic(Integer.parseInt(etDiastolic.getText().toString()));
-                        measurement.setHeartRate(Integer.parseInt(etHeartRate.getText().toString()));
-                        measurement.setComment(etComment.getText().toString());
+                        String systolic = etSystolic.getText().toString();
+                        String diastolic = etDiastolic.getText().toString();
+                        String heartRate = etHeartRate.getText().toString();
+                        String comment = etComment.getText().toString();
+
+                        if (TextUtils.isEmpty(systolic) || TextUtils.isEmpty(diastolic) || TextUtils.isEmpty(heartRate) ) {
+                            Toast.makeText(Edit.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                        } else {
+                            try {
+                                int diastolicValue = Integer.parseInt(diastolic);
+                                int systolicValue = Integer.parseInt(systolic);
+                                int heartRateValue = Integer.parseInt(heartRate);
+
+                                if (diastolicValue < 0 || systolicValue < 0 || heartRateValue < 0) {
+                                    Toast.makeText(Edit.this, "Please enter non-negative values", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    if (comment.length() > 20) {
+                                        Toast.makeText(Edit.this, "Comment exceeds maximum length of 20 characters", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        measurement.setDiastolic(diastolicValue);
+                                        measurement.setComment(comment);
+                                        measurement.setHeartRate(heartRateValue);
+                                        measurement.setSystolic(systolicValue);
+
+                                        measurementsRef.document(id).set(measurement)
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Toast.makeText(Edit.this, "Item Edited", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(Edit.this, MainActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
+                                                    startActivity(intent);
+                                                    finish();
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Toast.makeText(Edit.this, "Edit Failed", Toast.LENGTH_SHORT).show();
+                                                });
+                                    }
+                                }
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(Edit.this, "Invalid input for systolic, diastolic, or heart rate", Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
                         // Save the updated measurement object back to the database
-                        measurementsRef.document(id).set(measurement)
-                                .addOnSuccessListener(aVoid -> {
-                                    Toast.makeText(Edit.this, "Item Edited", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(Edit.this, MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Add this line
-                                    startActivity(intent);
-                                    finish();
-                                })
-                                .addOnFailureListener(e -> {
-                                    Toast.makeText(Edit.this, "Edit Failed", Toast.LENGTH_SHORT).show();
-                                });
+
 
                     }
                 });
