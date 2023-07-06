@@ -6,7 +6,7 @@ CardiacRecorder is a simple Android app designed to help users monitor their blo
 | Name          | GitHub Profile                  |
 | ------------- | ------------------------------- |
 | Abdulla      | [abdulla30r](https://github.com/abdulla30r)     |
-| Rakibul Nasib   | [janesmith](https://github.com/nasib1026) |
+| Rakibul Nasib   | [nasib1026](https://github.com/nasib1026) |
 
 ## Features
 
