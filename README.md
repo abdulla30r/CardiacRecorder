@@ -43,7 +43,7 @@ CardiacRecorder is a simple Android app designed to help users monitor their blo
 - [Contributing Guidelines](https://your-contributing-guidelines.com)
 
 ## Final Project Video
-- [Project Video]([https://your-project-documentation.com](https://youtube.com/shorts/Oz88JLy2tsA?feature=share))
+- [Project Video]([https://your-project-documentation.com](https://youtube.com/shorts/Oz88JLy2tsA?feature=share)
 
 ## Testing Videos(Unit,UI)
 - [Unit testing](https://youtu.be/xSAlqjntpGI)
