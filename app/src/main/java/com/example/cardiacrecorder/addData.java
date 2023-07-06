@@ -61,4 +61,20 @@ public class addData {
     {
         return records.size();
     }
+
+    /**
+     * Modifies an existing record in the list.
+     * If the data doesn't exist, it throws an exception.
+     *
+     * @param oldData The existing record to modify
+     * @param newData The new record to replace the old one
+     */
+    public void editData(Measurement oldData, Measurement newData) {
+        if (records.contains(oldData)) {
+            int index = records.indexOf(oldData);
+            records.set(index, newData);
+        } else {
+            throw new IllegalArgumentException("Data not found.");
+        }
+    }
 }
