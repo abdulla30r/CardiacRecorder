@@ -1,10 +1,12 @@
 package com.example.cardiacrecorder;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,18 +63,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.tvTime.setText(measurement.getTime());
         holder.tvComment.setText(measurement.getComment());
 
+
         if(measurement.getSystolic()>=90 && measurement.getSystolic()<=140){
             if(measurement.getDiastolic()>=60 && measurement.getDiastolic()<=90){
-                holder.txtStatus.setText(("Good Condition"));
+                holder.ivStatus.setImageResource(R.drawable.ok);
             }
             else{
-                holder.txtStatus.setText("Not Good");
+                holder.ivStatus.setImageResource(R.drawable.error);
+
             }
 
         }
 
         else{
-            holder.txtStatus.setText("Not Good");
+            holder.ivStatus.setImageResource(R.drawable.error);
+
         }
 
 
@@ -105,6 +110,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvSystolic, tvDiastolic, tvHeartRate, tvDate, tvTime, tvComment,txtStatus;
         Button btnDelete,btnEdit;
+        ImageView ivStatus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -116,7 +122,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             tvComment = itemView.findViewById(R.id.tvComment);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
-            txtStatus = itemView.findViewById(R.id.txtStatus);
+            ivStatus = itemView.findViewById(R.id.ivStatus);
         }
     }
 }
