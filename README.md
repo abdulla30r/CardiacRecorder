@@ -34,12 +34,12 @@ CardiacRecorder is a simple Android app designed to help users monitor their blo
 
 ## Screenshots
 
-<img src="https://github.com/abdulla30r/CardiacRecorder/blob/master/Splash.jpeg">
-<img src="https://github.com/abdulla30r/CardiacRecorder/blob/master/Login.jpeg">
-<img src="Register.jpeg">
-<img src="Homepage.jpeg">
-<img src="add.jpeg">
-<img src="edit.jpeg">
+<img src="https://github.com/abdulla30r/CardiacRecorder/blob/master/Splash.jpeg" style="height: 200px; width: auto;">
+<img src="https://github.com/abdulla30r/CardiacRecorder/blob/master/Login.jpeg" style="height: 200px; width: auto;">
+<img src="Register.jpeg" style="height: 200px; width: auto;">
+<img src="Homepage.jpeg" style="height: 200px; width: auto;">
+<img src="add.jpeg" style="height: 200px; width: auto;">
+<img src="edit.jpeg" style="height: 200px; width: auto;">
 
 ## Final Project Video
 - [Project Video]([https://your-project-documentation.com](https://youtube.com/shorts/Oz88JLy2tsA?feature=share)
